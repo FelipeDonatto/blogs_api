@@ -7,7 +7,7 @@ const usersModel = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      display_name: DataTypes.STRING,
+      displayName: { type: DataTypes.STRING, field: 'display_name' },
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       image: DataTypes.STRING,

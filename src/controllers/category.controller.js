@@ -1,6 +1,9 @@
 // const JWT = require('jsonwebtoken');
 
-const { createNewCategory } = require('../services/category.service');
+const {
+  createNewCategory,
+  getCategories,
+} = require('../services/category.service');
 
 const addCategory = async (req, res) => {
   const { name } = req.body;
@@ -11,4 +14,9 @@ const addCategory = async (req, res) => {
   return res.status(201).json(category);
 };
 
-module.exports = { addCategory };
+const getAllCategories = async (req, res) => {
+  const all = await getCategories();
+  return res.status(200).json(all);
+};
+
+module.exports = { addCategory, getAllCategories };

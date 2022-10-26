@@ -4,5 +4,8 @@ const createNewCategory = async (name) => {
   const newCategory = await Category.create({ name });
   return newCategory;
 };
-
-module.exports = { createNewCategory };
+const getCategories = async () => {
+  const categories = await Category.findAll();
+  return categories;
+};
+module.exports = { createNewCategory, getCategories };

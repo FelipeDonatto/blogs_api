@@ -14,6 +14,7 @@ const categoriesModel = (sequelize, DataTypes) => {
     },
     { tableName: 'categories', timestamps: false, underscored: true },
   );
+
   return categories;
 };
 

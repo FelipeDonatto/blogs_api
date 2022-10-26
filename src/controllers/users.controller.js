@@ -10,7 +10,6 @@ const userLogin = async (req, res) => {
   }
 
   const user = await usersServices.findOneByEmail(email);
-  console.log(user);
   if (user === null || user.password !== password) {
     return res.status(400).json({ message: 'Invalid fields' });
   }
@@ -21,4 +20,26 @@ const userLogin = async (req, res) => {
   });
 };
 
-module.exports = { userLogin };
+const userCreate = async (req, res) => {
+  const { displayName, email, password, image } = req.body;
+  await usersServices.createNewUser(
+    displayName,
+    email,
+    password,
+    // meu fixAll on save tava colocando uma virgula por algum motivo
+    // eslint-disable-next-line comma-dangle
+    image,
+  );
+
+  res.status(201).json({
+    token: JWT.sign(
+      { data: { displayName, email, password, image } },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '24h',
+      },
+    ),
+  });
+};
+
+module.exports = { userLogin, userCreate };

@@ -11,4 +11,11 @@ const createNewUser = (displayName, email, password, image) => {
   return newUser;
 };
 
-module.exports = { findOneByEmail, createNewUser };
+const getAll = async () => {
+  const users = await User.findAll({
+    attributes: ['id', 'displayName', 'email', 'image'],
+  });
+  return users;
+};
+
+module.exports = { findOneByEmail, createNewUser, getAll };

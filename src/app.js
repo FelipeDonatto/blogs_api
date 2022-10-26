@@ -1,5 +1,10 @@
 const express = require('express');
-const { userLogin, userCreate } = require('./controllers/users.controller');
+const {
+  userLogin,
+  userCreate,
+  getAllUsers,
+} = require('./controllers/users.controller');
+const { validateToken } = require('./middlewares/tokenValidator');
 const {
   validateDisplayName,
   validateEmail,
@@ -30,5 +35,9 @@ app.post(
     await userCreate(req, res);
   },
 );
+
+app.get('/user', validateToken, async (req, res) => {
+  await getAllUsers(req, res);
+});
 
 module.exports = app;

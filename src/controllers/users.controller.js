@@ -1,5 +1,6 @@
 const JWT = require('jsonwebtoken');
 const { usersServices } = require('../services');
+const { getAll } = require('../services/user.service');
 
 const userLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -42,4 +43,9 @@ const userCreate = async (req, res) => {
   });
 };
 
-module.exports = { userLogin, userCreate };
+const getAllUsers = async (req, res) => {
+  const all = await getAll();
+  return res.status(200).json(all);
+};
+
+module.exports = { userLogin, userCreate, getAllUsers };

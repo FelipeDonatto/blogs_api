@@ -1,4 +1,5 @@
 const express = require('express');
+const { addCategory } = require('./controllers/category.controller');
 const {
   userLogin,
   userCreate,
@@ -43,6 +44,10 @@ app.get('/user', validateToken, async (req, res) => {
 
 app.get('/user/:id', validateToken, async (req, res) => {
   await getById(req, res);
+});
+
+app.post('/categories', validateToken, async (req, res) => {
+  await addCategory(req, res);
 });
 
 module.exports = app;

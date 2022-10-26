@@ -1,6 +1,6 @@
 const JWT = require('jsonwebtoken');
 const { usersServices } = require('../services');
-const { getAll } = require('../services/user.service');
+const { getAll, getOneById } = require('../services/user.service');
 
 const userLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -48,4 +48,13 @@ const getAllUsers = async (req, res) => {
   return res.status(200).json(all);
 };
 
-module.exports = { userLogin, userCreate, getAllUsers };
+const getById = async (req, res) => {
+  const { id } = req.params;
+  const one = await getOneById(id);
+  if (one === null) {
+    return res.status(404).json({ message: 'User does not exist' });
+  }
+  return res.status(200).json(one);
+};
+
+module.exports = { userLogin, userCreate, getAllUsers, getById };

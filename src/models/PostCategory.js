@@ -25,7 +25,7 @@ const PostCategoryModel = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
       },
     },
-    { tableName: 'blog_posts', timestamps: false, underscored: true },
+    { tableName: 'posts_categories', timestamps: false, underscored: true },
   );
 
   PostCategory.associate = (models) => {

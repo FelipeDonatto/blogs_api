@@ -2,6 +2,7 @@ const express = require('express');
 const {
   addCategory,
   getAllCategories,
+  getAllPosts,
 } = require('./controllers/category.controller');
 const {
   userLogin,
@@ -55,6 +56,10 @@ app.post('/categories', validateToken, async (req, res) => {
 
 app.get('/categories', validateToken, async (req, res) => {
   await getAllCategories(req, res);
+});
+
+app.get('/post', validateToken, async (req, res) => {
+  await getAllPosts(req, res);
 });
 
 module.exports = app;
